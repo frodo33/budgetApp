@@ -2,7 +2,7 @@ import { validate } from "class-validator";
 
 import { createConflictError, createValidationError } from "../../../utils/errorHandler";
 import { hashPassword } from "../auth.utils";
-import { createUser, findUserByEmail } from "../auth.repository";
+import { createUser, findUserByEmail } from "../../users/users.repository";
 
 import { CreateUserDto } from "./register.dto";
 
