@@ -1,6 +1,8 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity()
+import { UserRefreshToken } from "./UserRefreshTokens";
+
+@Entity({ name: "users" })
 export class User {
   @PrimaryGeneratedColumn()
   id: number
@@ -13,6 +15,9 @@ export class User {
 
   @Column()
   password: string
+
+  @OneToMany(() => UserRefreshToken, (token) => token.user)
+  refreshTokens: UserRefreshToken[];
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public createdAt: Date

@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 
-import { HttpStatusCode } from "../../enums/httpStatus";
+import { HttpStatusCode } from "../../../enums/httpStatus";
 
-import { registerUser } from "./auth.service";
-import { CreateUserDto } from "./auth.dto";
+import { CreateUserDto } from "./register.dto";
+import { registerUser } from "./register.service";
 
 export const register = async (req: Request, res: Response) => {
   try {

@@ -1,9 +1,11 @@
-import express from "express";
+import express, { Router } from "express";
 import cors from "cors";
 import "dotenv/config";
 
 import authRoutes from "./controllers/auth/auth.routes";
 import { db } from "./config/datasource";
+import usersRoutes from "./controllers/users/users.routes";
+import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 
 db
   .initialize()
@@ -19,15 +21,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/auth", authRoutes)
+const router = Router()
 
-// example
-// const router = Router();
-// router.use('/auth', authRoutes);
-// router.use('/user', userRoutes);
-// router.use('/transactions', transactionsRoutes);
-// app.use("/api/user", userRoutes)
-// app.use("/api/transactions", transactionsRoutes)
-// e/o example
+router.use("/auth", authRoutes)
+router.use("/users", usersRoutes)
+
+app.use("/api", router)
 
 export default app;

@@ -1,11 +1,10 @@
 import { validate } from "class-validator";
 
-import { createConflictError, createValidationError } from "../../utils/errorHandler";
+import { createConflictError, createValidationError } from "../../../utils/errorHandler";
+import { hashPassword } from "../auth.utils";
+import { createUser, findUserByEmail } from "../auth.repository";
 
-import { hashPassword } from "./auth.utils";
-import { CreateUserDto } from "./auth.dto";
-import { createUser, findUserByEmail } from "./auth.repository";
-
+import { CreateUserDto } from "./register.dto";
 
 export const registerUser = async (userData: CreateUserDto) => {
   const { username, email, password } = userData
