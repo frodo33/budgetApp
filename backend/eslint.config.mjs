@@ -16,6 +16,7 @@ export default [
     },
     rules: {
       "no-console": ["warn", { allow: ["warn", "error"] }],
+      "no-multiple-empty-lines": ["error", { "max": 1 }],
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
