@@ -2,8 +2,8 @@ import { validate } from "class-validator";
 import bcrypt from "bcryptjs"
 
 import { createUnauthorizedError, createValidationError } from "../../../utils/errorHandler";
-import { findUserByEmail } from "../auth.repository";
 import { generateAuthTokens } from "../authToken.service";
+import { findUserByEmail } from "../../users/users.repository";
 
 import { LoginDto } from "./login.dto";
 
