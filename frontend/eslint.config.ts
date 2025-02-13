@@ -52,9 +52,11 @@ export default tseslint.config(
       "@/indent": ["error", 2],
       "no-console": ["warn", { "allow": ["warn", "error"] }],
       "arrow-body-style": ["error", "as-needed"],
+      "object-shorthand": ["error", "always"],
       "no-multiple-empty-lines": ["error", {
         "max": 1,
-        "maxEOF": 0
+        "maxEOF": 0,
+        "maxBOF": 0
       }],
       "@typescript-eslint/consistent-type-imports": [
         "warn",
@@ -66,12 +68,12 @@ export default tseslint.config(
       "import/order": [
         "error",
         {
+          "distinctGroup": false,
           "groups": [
             "builtin",
             "external",
             "internal",
-            "index",
-            "type"
+            "index"
           ],
           "pathGroups": [
             {
@@ -80,12 +82,20 @@ export default tseslint.config(
               "position": "before"
             },
             {
+              "pattern": "@mui/.*",
+              "group": "external",
+            },
+            {
               "pattern": "@/**",
               "group": "internal"
             }
           ],
           "pathGroupsExcludedImportTypes": ["react"],
-          "newlines-between": "always"
+          "newlines-between": "always",
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true
+          }
         }
       ]
     },
