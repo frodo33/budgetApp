@@ -1,7 +1,7 @@
 export const lightPalette = {
   palette: {
     text: {
-      primary: "#2E3A47", //
+      primary: "#2E3A47",
       secondary: "#5B6B79",
     },
     background: {
