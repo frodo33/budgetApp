@@ -1,5 +1,5 @@
 export const shape = {
-  sm: 8,
-  md: 12,
-  lg: 16,
+  sm: 1,
+  md: 1.5,
+  lg: 2,
 };
