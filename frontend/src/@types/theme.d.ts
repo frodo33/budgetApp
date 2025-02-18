@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-definitions */
 import type { CSSProperties } from "react";
 
 declare module "@mui/material/styles" {
@@ -22,9 +23,9 @@ declare module "@mui/material/styles" {
       lg: string;
     };
     shape: {
-      sm: number;
-      md: number;
-      lg: number;
+      sm: string;
+      md: string;
+      lg: string;
     };
   }
 
@@ -35,9 +36,9 @@ declare module "@mui/material/styles" {
       lg: string;
     };
     shape: {
-      sm: number;
-      md: number;
-      lg: number;
+      sm: string;
+      md: string;
+      lg: string;
     };
   }
 }
@@ -64,12 +65,18 @@ declare module "@mui/material/Typography" {
 declare module "@mui/material/Button" {
   interface ButtonPropsColorOverrides {
     primary: true;
-    secondary: true;
+    error: true;
+    secondary: false;
     text: false;
     inherit: false;
-    error: false;
     warning: false;
     info: false;
     success: false;
+  }
+
+  interface ButtonPropsSizeOverrides {
+    small: true;
+    medium: true;
+    large: false;
   }
 }
