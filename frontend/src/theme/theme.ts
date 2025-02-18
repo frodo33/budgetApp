@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material";
 
 import { breakpoints } from "./default/breakpoints"
+import { overrides } from "./default/overrides/overrides";
 import { darkPalette } from "./default/palette/darkPalette";
 import { lightPalette } from "./default/palette/lightPalette";
 import { shadows } from "./default/shadows";
@@ -17,4 +18,5 @@ export const theme = createTheme({
   typography,
   shape,
   boxShadows: shadows,
+  components: overrides,
 })
