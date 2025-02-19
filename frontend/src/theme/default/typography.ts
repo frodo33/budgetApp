@@ -29,7 +29,7 @@ export const typography = {
     lineHeight: "1.25rem",
   },
   body3: {
-    fontWeight: 600,
+    fontWeight: 400,
     fontSize: "0.75rem",
     lineHeight: "1.25rem",
   },
