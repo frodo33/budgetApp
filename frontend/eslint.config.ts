@@ -53,6 +53,7 @@ export default tseslint.config(
       "no-console": ["warn", { "allow": ["warn", "error"] }],
       "arrow-body-style": ["error", "as-needed"],
       "object-shorthand": ["error", "always"],
+      "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       "no-multiple-empty-lines": ["error", {
         "max": 1,
         "maxEOF": 0,
