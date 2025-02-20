@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs"
 import { createUnauthorizedError, createValidationError } from "../../../utils/errorHandler";
 import { generateAuthTokens } from "../authToken.service";
 import { findUserByEmail } from "../../users/users.repository";
+import { formatValidationErrors } from "../../../utils/errorHandler.utils";
 
 import { LoginDto } from "./login.dto";
 
@@ -12,10 +13,7 @@ export const loginUser = async (credentials: LoginDto) => {
   const errors = await validate(credentials)
 
   if (errors.length > 0) {
-    const validationErrors = errors.map((err) => ({
-      field: err.property,
-      errors: err.constraints
-    }));
+    const validationErrors = formatValidationErrors(errors)
 
     throw createValidationError("There are validation errors", validationErrors)
   }

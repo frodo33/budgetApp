@@ -6,6 +6,7 @@ import { createUnauthorizedError, createValidationError } from "../../../utils/e
 import { deleteRefreshTokenById, findRefreshToken } from "../../userRefreshTokens/userRefreshTokens.repository";
 import { saveInvalidToken } from "../../userInvalidTokens/userInvalidTokens.repository";
 import { envConfig } from "../../../config/env";
+import { formatValidationErrors } from "../../../utils/errorHandler.utils";
 
 import { LogoutDto } from "./logout.dto";
 
@@ -14,10 +15,7 @@ export const handleLogout = async (req: Request, body: LogoutDto) => {
   const errors = await validate(body)
 
   if (errors.length > 0) {
-    const validationErrors = errors.map((err) => ({
-      field: err.property,
-      errors: err.constraints
-    }));
+    const validationErrors = formatValidationErrors(errors)
 
     throw createValidationError("There are validation errors", validationErrors)
   }
