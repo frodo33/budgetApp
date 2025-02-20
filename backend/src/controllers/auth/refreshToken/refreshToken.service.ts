@@ -5,6 +5,7 @@ import { createUnauthorizedError, createValidationError } from "../../../utils/e
 import { deleteRefreshTokenById, findRefreshToken } from "../../userRefreshTokens/userRefreshTokens.repository";
 import { generateAuthTokens } from "../authToken.service";
 import { envConfig } from "../../../config/env";
+import { formatValidationErrors } from "../../../utils/errorHandler.utils";
 
 import { RefreshTokenDto } from "./refreshToken.dto";
 
@@ -13,10 +14,7 @@ export const handleRefreshToken = async (body: RefreshTokenDto) => {
   const errors = await validate(body)
 
   if (errors.length > 0) {
-    const validationErrors = errors.map((err) => ({
-      field: err.property,
-      errors: err.constraints
-    }));
+    const validationErrors = formatValidationErrors(errors)
 
     throw createValidationError("There are validation errors", validationErrors)
   }

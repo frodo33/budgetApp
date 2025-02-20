@@ -3,6 +3,7 @@ import { validate } from "class-validator";
 import { createConflictError, createValidationError } from "../../../utils/errorHandler";
 import { hashPassword } from "../auth.utils";
 import { createUser, findUserByEmail } from "../../users/users.repository";
+import { formatValidationErrors } from "../../../utils/errorHandler.utils";
 
 import { CreateUserDto } from "./register.dto";
 
@@ -11,10 +12,7 @@ export const registerUser = async (userData: CreateUserDto) => {
   const errors = await validate(userData)
 
   if (errors.length > 0) {
-    const validationErrors = errors.map((err) => ({
-      field: err.property,
-      errors: err.constraints
-    }));
+    const validationErrors = formatValidationErrors(errors)
 
     const validationError = createValidationError("There are validation errors", validationErrors)
 
