@@ -1,0 +1,14 @@
+{
+  "label": {
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password"
+  },
+  "placeholder": {
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password"
+  }
+}

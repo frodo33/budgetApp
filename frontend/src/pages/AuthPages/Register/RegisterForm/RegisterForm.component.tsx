@@ -1,26 +1,34 @@
 import type { FC } from "react";
-import { Box, Button, Divider, Typography, useColorScheme, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 import { TextFieldController } from "@/components/form/TextFieldController/TextFieldController.component";
+import { useYupResolver } from "@/hooks/useYupResolver";
+
+import { RegisterFormSchema } from "./RegisterForm.schema";
+import type { RegisterFormState } from "./RegisterForm.types";
+import { PasswordTextFieldController } from "../../@components/PasswordTextFieldController/PasswordTextFieldController.component";
 
 export const RegisterForm: FC = () => {
-  const theme = useTheme()
-  const isMdUp = useMediaQuery(theme.breakpoints.up("md"))
+  const { t } = useTranslation()
 
-  const form = useForm({
+  const form = useForm<RegisterFormState>({
     defaultValues: {
       username: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
     mode: "all",
-    // resolver: useYupResolver(LoginFormValidationSchema),
+    resolver: useYupResolver(RegisterFormSchema),
   })
 
   const handleSubmit = form.handleSubmit(async (values) => {
     console.log(values, "values")
-    try { } catch (error) { }
+    try {
+
+    } catch (error) { }
   })
 
   return (
@@ -32,26 +40,32 @@ export const RegisterForm: FC = () => {
         <Box mb={2}>
           <TextFieldController
             name="username"
-            label="Username"
-            placeholder="Username"
-            type="email"
-            sx={{ fontSize: "16px" }}
+            label={t("form:label:username")}
+            placeholder={t("form:placeholder:username")}
           />
         </Box>
 
         <Box mb={2}>
           <TextFieldController
             name="email"
-            label="Email"
-            placeholder="Email"
+            label={t("form:label:email")}
+            placeholder={t("form:placeholder:email")}
           />
         </Box>
 
         <Box mb={2}>
-          <TextFieldController
+          <PasswordTextFieldController
             name="password"
-            label="Password"
-            placeholder="Password"
+            label={t("form:label:password")}
+            placeholder={t("form:placeholder:password")}
+          />
+        </Box>
+
+        <Box mb={2}>
+          <PasswordTextFieldController
+            name="confirmPassword"
+            label={t("form:label:confirmPassword")}
+            placeholder={t("form:placeholder:confirmPassword")}
           />
         </Box>
 
@@ -63,23 +77,8 @@ export const RegisterForm: FC = () => {
           fullWidth
           sx={{ mb: 2 }}
         >
-          Register
+          {t("user:register")}
         </Button>
-
-        <Box
-          display="flex"
-          justifyContent="center"
-        >
-          <Typography
-            variant="body1"
-            color="text.secondary"
-          >
-            Already have an account?
-          </Typography>&nbsp;
-          <Button variant="text">
-            Log in
-          </Button>
-        </Box>
       </Box>
     </FormProvider>
   )

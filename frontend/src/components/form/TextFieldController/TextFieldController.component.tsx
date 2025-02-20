@@ -11,6 +11,8 @@ export const TextFieldController: FC<TextFieldControllerProps> = ({
   fullWidth = true,
   disabled,
   required,
+  startAdornment,
+  endAdornment,
   ...props
 }) => {
   const { field, fieldState: { error, invalid } } = useController({ name })
@@ -24,6 +26,8 @@ export const TextFieldController: FC<TextFieldControllerProps> = ({
       error={invalid}
       helperText={error?.message}
       fullWidth={fullWidth}
+      startAdornment={startAdornment}
+      endAdornment={endAdornment}
       {...field}
       ref={null}
       {...props}
