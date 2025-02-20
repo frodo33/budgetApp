@@ -1,8 +1,10 @@
 import type { FC } from "react";
-import { Box, Button, Divider, Typography } from "@mui/material";
+import { Box, Button, Divider } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
+import { useRegisterMutation } from "@/api/endpoints/auth/auth.api";
 import { TextFieldController } from "@/components/form/TextFieldController/TextFieldController.component";
 import { useYupResolver } from "@/hooks/useYupResolver";
 
@@ -12,6 +14,8 @@ import { PasswordTextFieldController } from "../../@components/PasswordTextField
 
 export const RegisterForm: FC = () => {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const [registerUser] = useRegisterMutation()
 
   const form = useForm<RegisterFormState>({
     defaultValues: {
@@ -25,10 +29,14 @@ export const RegisterForm: FC = () => {
   })
 
   const handleSubmit = form.handleSubmit(async (values) => {
-    console.log(values, "values")
-    try {
+    const { username, email, password } = values
 
-    } catch (error) { }
+    try {
+      await registerUser({ username, email, password }).unwrap()
+      await navigate("/login")
+    } catch (error) {
+      console.log(error, "error")
+    }
   })
 
   return (

@@ -49,7 +49,7 @@ export const RegisterPage: FC = () => {
 
           <Button
             variant="text"
-            onClick={() => void navigate("/login")}
+            onClick={() => navigate("/login")}
           >
             {t("user:login")}
           </Button>
