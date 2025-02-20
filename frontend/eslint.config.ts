@@ -54,6 +54,7 @@ export default tseslint.config(
       "arrow-body-style": ["error", "as-needed"],
       "object-shorthand": ["error", "always"],
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+      "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
       "no-multiple-empty-lines": ["error", {
         "max": 1,
         "maxEOF": 0,
