@@ -21,6 +21,11 @@ export const MuiInputBase: ComponentOverride["MuiInputBase"] = {
         border: `1px solid ${theme.palette.error.main}!important`,
       },
     }),
+    input: ({
+      "&:-webkit-autofill": {
+        WebkitBoxShadow: "0 0 0 100px #fff inset",
+      },
+    })
   }
 }
 
@@ -51,6 +56,7 @@ export const MuiOutlinedInput: ComponentOverride["MuiOutlinedInput"] = {
   styleOverrides: {
     root: ({ theme }) => ({
       padding: theme.spacing(0, 1.5),
+      fontSize: "16px",
     }),
   }
 }
