@@ -1,6 +1,6 @@
 import { apiService } from "@/api/api.service";
 
-import { registerConfig } from "./auth.config";
+import { loginConfig, registerConfig } from "./auth.config";
 import type { UserPostModel, UserResponseModel } from "../user/user.types";
 
 export const AuthApi = apiService
@@ -11,10 +11,18 @@ export const AuthApi = apiService
           ...registerConfig,
           body
         }),
+      }),
+
+      login: build.mutation<UserResponseModel, UserPostModel>({
+        query: (body) => ({
+          ...loginConfig,
+          body
+        }),
       })
     }),
   });
 
 export const {
   useRegisterMutation,
+  useLoginMutation,
 } = AuthApi
