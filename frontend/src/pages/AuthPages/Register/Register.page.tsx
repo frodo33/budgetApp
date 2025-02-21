@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 
 import { PublicPageWrapper } from "@/components/layouts/PublicLayout/PublicLayout.styles";
+import { getPath } from "@/pages/@Router/router/router.utils";
+import { RoutePath } from "@/pages/@Router/router/routes";
 
 import { RegisterForm } from "./RegisterForm/RegisterForm.component";
 
@@ -49,7 +51,7 @@ export const RegisterPage: FC = () => {
 
           <Button
             variant="text"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate(getPath(RoutePath.LOGIN, true))}
           >
             {t("user:login")}
           </Button>

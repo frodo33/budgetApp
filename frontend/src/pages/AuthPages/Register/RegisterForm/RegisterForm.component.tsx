@@ -1,43 +1,17 @@
 import type { FC } from "react";
 import { Box, Button, Divider } from "@mui/material";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 
-import { useRegisterMutation } from "@/api/endpoints/auth/auth.api";
+import { ButtonLoader } from "@/components/common/ButtonLoader/ButtonLoader.component";
 import { TextFieldController } from "@/components/form/TextFieldController/TextFieldController.component";
-import { useYupResolver } from "@/hooks/useYupResolver";
 
-import { RegisterFormSchema } from "./RegisterForm.schema";
-import type { RegisterFormState } from "./RegisterForm.types";
+import { useRegisterForm } from "./RegisterForm.hook";
 import { PasswordTextFieldController } from "../../@components/PasswordTextFieldController/PasswordTextFieldController.component";
 
 export const RegisterForm: FC = () => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
-  const [registerUser] = useRegisterMutation()
-
-  const form = useForm<RegisterFormState>({
-    defaultValues: {
-      username: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    },
-    mode: "all",
-    resolver: useYupResolver(RegisterFormSchema),
-  })
-
-  const handleSubmit = form.handleSubmit(async (values) => {
-    const { username, email, password } = values
-
-    try {
-      await registerUser({ username, email, password }).unwrap()
-      await navigate("/login")
-    } catch (error) {
-      console.log(error, "error")
-    }
-  })
+  const { form, handleSubmit, isLoading } = useRegisterForm()
 
   return (
     <FormProvider {...form}>
@@ -84,6 +58,7 @@ export const RegisterForm: FC = () => {
           variant="contained"
           fullWidth
           sx={{ mb: 2 }}
+          endIcon={isLoading ? <ButtonLoader /> : null}
         >
           {t("user:register")}
         </Button>
