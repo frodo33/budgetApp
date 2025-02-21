@@ -14,6 +14,9 @@ dist-ssr
 .cert
 .eslintcache
 
+# env
+.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { Box } from "@mui/material";
 
 import logoUrl from "@/assets/logo.svg"
 
@@ -10,13 +9,5 @@ export const AppHeader: FC = () => (
     <StyledImgWrapper>
       <img src={logoUrl} alt="budgetWise-logo" />
     </StyledImgWrapper>
-
-    <Box
-      display="flex"
-      alignItems="center"
-      ml="auto"
-    >
-      register
-    </Box>
   </StyledAppHeader>
 )

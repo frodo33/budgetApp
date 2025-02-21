@@ -1,16 +1,16 @@
 import js from "@eslint/js"
-import globals from "globals"
-import reactHooks from "eslint-plugin-react-hooks"
-import reactRefresh from "eslint-plugin-react-refresh"
-import tseslint from "typescript-eslint"
-import react from "eslint-plugin-react"
 import prettierConfig from "eslint-config-prettier"
 import importPlugin from "eslint-plugin-import"
+import react from "eslint-plugin-react"
+import reactHooks from "eslint-plugin-react-hooks"
+import reactRefresh from "eslint-plugin-react-refresh"
+import globals from "globals"
+import tseslint from "typescript-eslint"
 
 const tsconfigRootDir = new URL(".", import.meta.url).pathname;
 
 export default tseslint.config(
-  { ignores: ["dist"] },
+  { ignores: ["dist", "eslint.config.ts"] },
   {
     settings: {
       react: { version: "detect" },
@@ -54,6 +54,7 @@ export default tseslint.config(
       "arrow-body-style": ["error", "as-needed"],
       "object-shorthand": ["error", "always"],
       "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+      "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
       "no-multiple-empty-lines": ["error", {
         "max": 1,
         "maxEOF": 0,

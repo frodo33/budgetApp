@@ -14,3 +14,10 @@ export const StyledContainer = styled(Container)(({ theme }) => ({
   flexDirection: "column",
   background: theme.palette.background.default,
 }))
+
+export const PublicPageWrapper = styled(Box)(({
+  display: "flex",
+  flex: 1,
+  alignItems: "center",
+  justifyContent: "center",
+}))

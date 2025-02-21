@@ -1,0 +1,11 @@
+{
+  "global": "Something went wrong. Please try again later.",
+  "validation": {
+    "requiredField": "This field can't be empty",
+    "email": "Email must be valid",
+    "passwordNotMatch": "Entered  passwords are different",
+    "passwordLength": "Password must be at least {{ count }} characters long",
+    "minChars": "At least {{ count }} characters",
+    "maxChars": "Cannot exceed {{ count }} characters"
+  }
+}
