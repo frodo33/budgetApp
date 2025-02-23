@@ -19,9 +19,10 @@ export const loginUser = async (credentials: LoginDto) => {
   }
 
   const user = await findUserByEmail(email)
-  const passwordMatch = await bcrypt.compare(password, user.password)
+  if (!user) throw createUnauthorizedError("Email or password is invalid.")
 
-  if (!user || !passwordMatch) throw createUnauthorizedError("Email or password is invalid.")
+  const passwordMatch = await bcrypt.compare(password, user.password)
+  if (!passwordMatch) throw createUnauthorizedError("Email or password is invalid.")
 
   const tokens = await generateAuthTokens(user.id)
 
