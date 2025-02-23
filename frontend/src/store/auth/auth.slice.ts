@@ -6,7 +6,8 @@ import type { AuthState } from "./auth.types.ts";
 const initialState: AuthState = {
   accessToken: null,
   userData: {
-    username: null,
+    id: null,
+    username: "",
     email: "",
   },
 }

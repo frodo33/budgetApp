@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import { Box, Button, styled, Typography, useColorScheme } from "@mui/material";
+import { useNavigate } from "react-router";
 
 const StyledButton = styled(Button)(({ theme }) => ({
   margin: "16px",
@@ -9,9 +10,13 @@ const StyledButton = styled(Button)(({ theme }) => ({
 
 export const DashboardPage: FC = () => {
   const { setMode } = useColorScheme()
+  const navigate = useNavigate()
   return (
     <>
       <Typography color="error.main" variant="h1" mb={2}>Dashboard</Typography>
+
+      <Button onClick={() => navigate("/login")}>login</Button>
+      <Button onClick={() => navigate("/register")}>register</Button>
 
       <Typography variant="h2" mb={2}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti, saepe?</Typography>
       <Typography variant="h3" mb={2}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti, saepe?</Typography>

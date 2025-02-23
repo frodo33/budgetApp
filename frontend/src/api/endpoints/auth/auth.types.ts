@@ -5,5 +5,4 @@ export type LoginPostModel = {
 
 export type LoginResponseModel = {
   accessToken: string
-  refreshToken: string
 }

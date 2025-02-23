@@ -8,7 +8,7 @@ import { setFormErrors } from "@/api/api.utils";
 import { useRegisterMutation } from "@/api/endpoints/auth/auth.api";
 import { useYupResolver } from "@/hooks/useYupResolver";
 import { getPath } from "@/pages/@Router/router/router.utils";
-import { RoutePath } from "@/pages/@Router/router/routes";
+import { RoutePath } from "@/pages/@Router/routes";
 
 import { RegisterFormSchema } from "./RegisterForm.schema";
 import type { RegisterFormState } from "./RegisterForm.types";

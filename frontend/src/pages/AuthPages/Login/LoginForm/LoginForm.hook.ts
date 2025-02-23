@@ -1,21 +1,17 @@
 import { useSnackbar } from "notistack";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 
 import type { ApiError } from "@/api/api.types";
 import { setFormErrors } from "@/api/api.utils";
 import { useLoginMutation } from "@/api/endpoints/auth/auth.api";
 import { useYupResolver } from "@/hooks/useYupResolver";
-import { getPath } from "@/pages/@Router/router/router.utils";
-import { RoutePath } from "@/pages/@Router/router/routes";
 
 import { LoginFormSchema } from "./LoginForm.schema";
 import type { LoginFormState } from "./LoginForm.types";
 
 export const useLoginForm = () => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
   const { enqueueSnackbar } = useSnackbar()
   const [loginUser, { isLoading }] = useLoginMutation()
 
@@ -33,7 +29,6 @@ export const useLoginForm = () => {
 
     try {
       await loginUser({ email, password }).unwrap()
-      await navigate(getPath(RoutePath.REGISTER, true))
     } catch (error) {
       const err = error as ApiError
       const validationErrors = err?.data?.errors

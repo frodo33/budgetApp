@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 
 import { PublicPageWrapper } from "@/components/layouts/PublicLayout/PublicLayout.styles";
 import { getPath } from "@/pages/@Router/router/router.utils";
-import { RoutePath } from "@/pages/@Router/router/routes";
+import { RoutePath } from "@/pages/@Router/routes";
 
 import { RegisterForm } from "./RegisterForm/RegisterForm.component";
 
