@@ -1,17 +1,24 @@
 import { Request, Response } from "express";
 
 import { HttpStatusCode } from "../../../enums/httpStatus";
+import { envConfig } from "../../../config/env";
 
 import { handleRefreshToken } from "./refreshToken.service";
-import { RefreshTokenDto } from "./refreshToken.dto";
 
 export const refreshToken = async (req: Request, res: Response) => {
   try {
-    const refreshTokenDto = Object.assign(new RefreshTokenDto(), req.body)
-    const tokens = await handleRefreshToken(refreshTokenDto)
+    const refreshToken = req.cookies.refreshToken
+    const { accessToken, refreshToken: newRefreshToken } = await handleRefreshToken(refreshToken)
 
-    res.status(HttpStatusCode.OK).json(tokens)
+    res.clearCookie("refreshToken")
+    res.cookie("refreshToken", newRefreshToken, {
+      maxAge: envConfig.refreshTokenExpiresIn,
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    })
+    res.status(HttpStatusCode.OK).json({ accessToken })
   } catch (error) {
-    res.status(500).json(error)
+    res.status(error.status).json(error)
   }
 }

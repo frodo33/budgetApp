@@ -14,8 +14,8 @@ export const login = async (req: Request, res: Response) => {
     res.cookie("refreshToken", refreshToken, {
       maxAge: envConfig.refreshTokenExpiresIn,
       httpOnly: true,
-      secure: false, // TODO: have to be true, *https*
-      // sameSite: "strict",
+      secure: true,
+      sameSite: "none",
     })
     res.status(HttpStatusCode.OK).json({ accessToken })
   } catch (error) {
