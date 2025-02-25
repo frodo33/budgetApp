@@ -1,12 +1,11 @@
-import express, { Router } from "express";
+import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import "dotenv/config";
 
-import authRoutes from "./controllers/auth/auth.routes";
 import { db } from "./config/datasource";
-import usersRoutes from "./controllers/users/users.routes";
+import { router } from "./router";
 
 db
   .initialize()
@@ -25,14 +24,7 @@ app.use(cors({
 }));
 
 app.use(cookieParser())
-
 app.use(express.json());
-
-const router = Router()
-
-router.use("/auth", authRoutes)
-router.use("/users", usersRoutes)
-
 app.use("/api", router)
 
 export default app;

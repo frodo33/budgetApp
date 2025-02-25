@@ -10,9 +10,8 @@ export const refreshToken = async (req: Request, res: Response) => {
     const refreshToken = req.cookies.refreshToken
     const { accessToken, refreshToken: newRefreshToken } = await handleRefreshToken(refreshToken)
 
-    res.clearCookie("refreshToken")
     res.cookie("refreshToken", newRefreshToken, {
-      maxAge: envConfig.refreshTokenExpiresIn,
+      maxAge: envConfig.refreshTokenExpiresIn * 1000,
       httpOnly: true,
       secure: true,
       sameSite: "none",
