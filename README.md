@@ -19,8 +19,8 @@ root/
 ```
 
 ## Roadmap
-- [:white_check_mark:] Dark mode support
-- [:white_check_mark:] User authentication
+- [x] Dark mode support
+- [x] User authentication
 - [ ] CRUD operations for transactions
 - [ ] Charts and analytics
 - [ ] Monthly and yearly financial summaries
