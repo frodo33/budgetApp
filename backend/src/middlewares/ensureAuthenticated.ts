@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express"
 
 import { envConfig } from "../config/env"
 import { findInvalidToken } from "../controllers/userInvalidTokens/userInvalidTokens.repository"
-import { createError, createNotFoundError, createServerError, createUnauthorizedError } from "../utils/errorHandler"
+import { createServerError, createUnauthorizedError } from "../utils/errorHandler"
 import { HttpStatusCode } from "../enums/httpStatus"
 
 export const ensureAuthenticated = async (req: Request, res: Response, next: NextFunction) => {

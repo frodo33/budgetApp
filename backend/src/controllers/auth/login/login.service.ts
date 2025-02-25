@@ -5,6 +5,7 @@ import { createUnauthorizedError, createValidationError } from "../../../utils/e
 import { generateAuthTokens } from "../authToken.service";
 import { findUserByEmail } from "../../users/users.repository";
 import { formatValidationErrors } from "../../../utils/errorHandler.utils";
+import { cleanOldRefreshTokens } from "../../userRefreshTokens/userRefreshTokens.repository";
 
 import { LoginDto } from "./login.dto";
 
@@ -19,10 +20,12 @@ export const loginUser = async (credentials: LoginDto) => {
   }
 
   const user = await findUserByEmail(email)
+  if (!user) throw createUnauthorizedError("Email or password is invalid.")
+
   const passwordMatch = await bcrypt.compare(password, user.password)
+  if (!passwordMatch) throw createUnauthorizedError("Email or password is invalid.")
 
-  if (!user || !passwordMatch) throw createUnauthorizedError("Email or password is invalid.")
-
+  await cleanOldRefreshTokens(user.id)
   const tokens = await generateAuthTokens(user.id)
 
   return tokens

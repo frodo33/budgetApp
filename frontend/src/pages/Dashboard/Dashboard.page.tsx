@@ -1,32 +1,30 @@
 import type { FC } from "react";
-import { Box, Button, styled, Typography, useColorScheme } from "@mui/material";
+import { Box, Button, Typography, useColorScheme } from "@mui/material";
+import { useNavigate } from "react-router";
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  margin: "16px",
-  borderRadius: theme.shape.sm,
-  boxShadow: theme.boxShadows.lg,
-}))
+import { useLogoutMutation, useRefreshTokenMutation } from "@/api/endpoints/auth/auth.api";
+import { useLazyGetUserDataQuery } from "@/api/endpoints/users/users.api";
 
 export const DashboardPage: FC = () => {
   const { setMode } = useColorScheme()
+  const navigate = useNavigate()
+  const [refreshToken] = useRefreshTokenMutation()
+  const [logout] = useLogoutMutation()
+  const [getUserData] = useLazyGetUserDataQuery()
+
   return (
     <>
       <Typography color="error.main" variant="h1" mb={2}>Dashboard</Typography>
 
-      <Typography variant="h2" mb={2}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti, saepe?</Typography>
-      <Typography variant="h3" mb={2}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti, saepe?</Typography>
-      <Typography variant="body1" mb={2}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti, saepe?</Typography>
-      <Typography variant="body2" mb={2}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti, saepe?</Typography>
-      <Typography variant="body3" mb={2}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti, saepe?</Typography>
-
-      <StyledButton variant="contained" size="small" onClick={() => setMode("system")}>system</StyledButton>
-      <Box width={100} height={100} bgcolor="primary.main">asdf</Box>
-      <StyledButton variant="contained" size="medium" onClick={() => setMode("dark")}>Dark</StyledButton>
-
-      <StyledButton variant="contained" size="large" onClick={() => setMode("light")}>Light</StyledButton>
-
-      <StyledButton variant="outlined" size="medium" onClick={() => setMode("system")}>System</StyledButton>
-      <StyledButton variant="text" size="medium" onClick={() => setMode("system")}>system</StyledButton>
+      <Box>
+        <Button onClick={() => refreshToken()}>refresh</Button>
+        <Button onClick={() => logout()}>logout</Button>
+        <Button onClick={() => getUserData()}>getUserData</Button>
+        <Button onClick={() => navigate("/login")}>login</Button>
+        <Button onClick={() => navigate("/register")}>register</Button>
+        <Button onClick={() => setMode("dark")}>Dark</Button>
+        <Button onClick={() => setMode("light")}>Light</Button>
+      </Box>
     </>
   )
 }

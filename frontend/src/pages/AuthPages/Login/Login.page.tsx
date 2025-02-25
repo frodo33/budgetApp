@@ -1,61 +1,64 @@
 import type { FC } from "react";
-import { Box, Paper, Typography, useColorScheme } from "@mui/material";
-import { FaLock } from "react-icons/fa6";
+import { Box, Button, Divider, Paper, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router";
 
-import { TextField } from "@/components/form/TextField/TextField.component";
+import { PublicPageWrapper } from "@/components/layouts/PublicLayout/PublicLayout.styles";
+import { getPath } from "@/pages/@Router/router/router.utils";
+import { RoutePath } from "@/pages/@Router/routes";
+
+import { LoginForm } from "./LoginForm/LoginForm.component";
 
 export const LoginPage: FC = () => {
-  const { mode, setMode } = useColorScheme()
+  const { t } = useTranslation()
+  const navigate = useNavigate()
+  const theme = useTheme()
+  const isSmUp = useMediaQuery(theme.breakpoints.up("sm"))
+  const isMdUp = useMediaQuery(theme.breakpoints.up("md"))
 
   return (
-    <Box
-      display="flex"
-      flex={1}
-      alignItems="center"
-      justifyContent="center"
+    <PublicPageWrapper>
+      <Paper sx={{ minWidth: isMdUp ? 450 : "100%" }}>
+        <Typography
+          component="h1"
+          variant={isSmUp ? "h1" : "h2"}
+          align="center"
+        >
+          {t("user:loginTitle")}
+        </Typography>
 
-    >
-      <Paper>
-        <button onClick={() => setMode("light")}>light</button>
-        <button onClick={() => setMode("dark")}>dark</button>
-        <Typography variant="h1">Login</Typography>
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          align="center"
+          mb={3}
+        >
+          {t("user:loginDetails")}
+        </Typography>
 
-        <Box>
-          <TextField
-            label="Test"
-            startAdornment={<FaLock />}
-          />
-        </Box>
+        <LoginForm />
 
-        <Box>
-          <TextField
-            label="Username"
-            helperText="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam labore obcaecati error est enim, laboriosam rerum voluptate nostrum velit qui."
-            error={true}
-            endAdornment={<FaLock />}
-            placeholder="Test"
-          />
-        </Box>
+        <Divider sx={{ mt: 3, mb: 2 }} />
 
-        <Box>
-          <TextField
-            label="Password"
-            size="small"
-            helperText="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam labore obcaecati error est enim, laboriosam rerum voluptate nostrum velit qui."
-            placeholder="Test"
-          />
-        </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+        >
+          <Typography
+            variant="body1"
+            color="text.secondary"
+          >
+            {t("user:dontHaveAccount")}
+          </Typography>&nbsp;
 
-        <Box>
-          <TextField
-            label="Test"
-            size="small"
-            helperText="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam labore obcaecati error est enim, laboriosam rerum voluptate nostrum velit qui."
-            disabled
-            placeholder="Test"
-          />
+          <Button
+            variant="text"
+            onClick={() => navigate(getPath(RoutePath.REGISTER, true))}
+          >
+            {t("user:signUp")}
+          </Button>
         </Box>
       </Paper>
-    </Box>
+    </PublicPageWrapper >
   )
 }

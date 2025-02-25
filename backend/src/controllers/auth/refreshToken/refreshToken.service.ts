@@ -1,22 +1,13 @@
 import { JwtPayload, verify } from "jsonwebtoken";
-import { validate } from "class-validator";
 
-import { createUnauthorizedError, createValidationError } from "../../../utils/errorHandler";
+import { createUnauthorizedError } from "../../../utils/errorHandler";
 import { deleteRefreshTokenById, findRefreshToken } from "../../userRefreshTokens/userRefreshTokens.repository";
 import { generateAuthTokens } from "../authToken.service";
 import { envConfig } from "../../../config/env";
-import { formatValidationErrors } from "../../../utils/errorHandler.utils";
 
-import { RefreshTokenDto } from "./refreshToken.dto";
-
-export const handleRefreshToken = async (body: RefreshTokenDto) => {
-  const { refreshToken } = body
-  const errors = await validate(body)
-
-  if (errors.length > 0) {
-    const validationErrors = formatValidationErrors(errors)
-
-    throw createValidationError("There are validation errors", validationErrors)
+export const handleRefreshToken = async (refreshToken: string) => {
+  if (!refreshToken) {
+    throw createUnauthorizedError("Refresh token invalid or expired")
   }
 
   const decodedRefreshToken = verify(refreshToken, envConfig.refreshTokenSecret) as JwtPayload

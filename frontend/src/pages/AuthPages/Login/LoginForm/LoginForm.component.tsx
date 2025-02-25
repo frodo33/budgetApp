@@ -6,12 +6,12 @@ import { useTranslation } from "react-i18next";
 import { ButtonLoader } from "@/components/common/ButtonLoader/ButtonLoader.component";
 import { TextFieldController } from "@/components/form/TextFieldController/TextFieldController.component";
 
-import { useRegisterForm } from "./RegisterForm.hook";
+import { useLoginForm } from "./LoginForm.hook";
 import { PasswordTextFieldController } from "../../@components/PasswordTextFieldController/PasswordTextFieldController.component";
 
-export const RegisterForm: FC = () => {
+export const LoginForm: FC = () => {
   const { t } = useTranslation()
-  const { form, handleSubmit, isLoading } = useRegisterForm()
+  const { form, handleSubmit, isLoading } = useLoginForm()
 
   return (
     <FormProvider {...form}>
@@ -21,33 +21,17 @@ export const RegisterForm: FC = () => {
       >
         <Box mb={2}>
           <TextFieldController
-            name="username"
-            label={t("form:label:username")}
-            placeholder={t("form:placeholder:username")}
-          />
-        </Box>
-
-        <Box mb={2}>
-          <TextFieldController
             name="email"
             label={t("form:label:email")}
             placeholder={t("form:placeholder:email")}
           />
         </Box>
 
-        <Box mb={2}>
+        <Box mb={3}>
           <PasswordTextFieldController
             name="password"
             label={t("form:label:password")}
             placeholder={t("form:placeholder:password")}
-          />
-        </Box>
-
-        <Box mb={3}>
-          <PasswordTextFieldController
-            name="confirmPassword"
-            label={t("form:label:confirmPassword")}
-            placeholder={t("form:placeholder:confirmPassword")}
           />
         </Box>
 
@@ -57,7 +41,7 @@ export const RegisterForm: FC = () => {
           fullWidth
           endIcon={isLoading ? <ButtonLoader /> : null}
         >
-          {t("user:signUp")}
+          {t("user:signIn")}
         </Button>
       </Box>
     </FormProvider>

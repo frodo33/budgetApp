@@ -3,14 +3,13 @@ import { Request, Response } from "express";
 import { HttpStatusCode } from "../../../enums/httpStatus";
 
 import { handleLogout } from "./logout.service";
-import { LogoutDto } from "./logout.dto";
 
 export const logout = async (req: Request, res: Response) => {
   try {
-    const logoutDto = Object.assign(new LogoutDto(), req.body)
-    await handleLogout(req, logoutDto)
+    await handleLogout(req)
 
-    res.status(HttpStatusCode.OK).json("dupa")
+    res.clearCookie("refreshToken")
+    res.status(HttpStatusCode.NO_CONTENT).end()
   } catch (error) {
     res.status(error.status).json(error)
   }

@@ -5,6 +5,7 @@ export type UserPostModel = {
 }
 
 export type UserResponseModel = {
-  username?: string | null
+  id: number | null
+  username: string
   email: string
 }

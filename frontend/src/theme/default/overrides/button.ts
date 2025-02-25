@@ -5,6 +5,7 @@ import type { ComponentOverride } from "@/theme/theme.types";
 export const MuiButton: ComponentOverride["MuiButton"] = {
   defaultProps: {
     disableRipple: true,
+    variant: "contained",
   },
   styleOverrides: {
     root: ({ theme }) => ({

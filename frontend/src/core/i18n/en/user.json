@@ -1,7 +1,10 @@
 {
-  "login": "Log in",
-  "register": "Register",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
   "createAccount": "Create a new account",
-  "createAccountDetails": "Enter your details to register",
-  "alreadyHaveAccount": "Already have an account?"
+  "createAccountDetails": "Enter your details to sign up",
+  "loginTitle": "Sign in to your account",
+  "loginDetails": "Enter your credentials to access your account",
+  "alreadyHaveAccount": "Already have an account?",
+  "dontHaveAccount": "Don't have an account?"
 }

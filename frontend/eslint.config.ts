@@ -49,7 +49,7 @@ export default tseslint.config(
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
       "quotes": ["error", "double"],
-      "@/indent": ["error", 2],
+      "indent": ["error", 2, { "SwitchCase": 1 }],
       "no-console": ["warn", { "allow": ["warn", "error"] }],
       "arrow-body-style": ["error", "as-needed"],
       "object-shorthand": ["error", "always"],
