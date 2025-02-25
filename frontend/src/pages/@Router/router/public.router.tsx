@@ -5,7 +5,7 @@ import { LoginPage } from "@/pages/AuthPages/Login/Login.page";
 import { RegisterPage } from "@/pages/AuthPages/Register/Register.page";
 
 import { getPath } from "./router.utils";
-import { PublicRoutesController } from "../RouteControllers/PublicRoutesController.component";
+import { PublicRoutesController } from "../RouteControllers/PublicRoutes.controller";
 import { RoutePath } from "../routes";
 
 export const publicRoutes = {

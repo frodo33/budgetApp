@@ -4,7 +4,7 @@ import { PublicLayout } from "@/components/layouts/PublicLayout/PublicLayout";
 import { DashboardPage } from "@/pages/Dashboard/Dashboard.page";
 
 import { getPath } from "./router.utils";
-import { PrivateRoutesController } from "../RouteControllers/PrivateRoutesController.component";
+import { PrivateRoutesController } from "../RouteControllers/PrivateRoutes.controller";
 import { RoutePath } from "../routes";
 
 export const privateRoutes = {

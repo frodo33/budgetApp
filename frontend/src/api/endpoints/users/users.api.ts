@@ -16,4 +16,5 @@ export const UsersApi = apiService
 
 export const {
   useGetUserDataQuery,
+  useLazyGetUserDataQuery,
 } = UsersApi
