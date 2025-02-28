@@ -22,7 +22,7 @@ export const ensureAuthenticated = async (req: Request, res: Response, next: Nex
       return
     }
 
-    const decodedAccessToken = verify(accessToken, envConfig.accessTokenSecret) as JwtPayload;
+    const decodedAccessToken = verify(accessToken, envConfig.jwt.accessTokenSecret) as JwtPayload;
 
     req.accessToken = { value: accessToken, exp: decodedAccessToken.exp }
     req.user = { id: decodedAccessToken.userId }

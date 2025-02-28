@@ -12,10 +12,10 @@ export const login = async (req: Request, res: Response) => {
     const { accessToken, refreshToken } = await loginUser(userDto)
 
     res.cookie("refreshToken", refreshToken, {
-      maxAge: envConfig.refreshTokenExpiresIn * 1000,
+      maxAge: envConfig.jwt.refreshTokenExpiresIn * 1000,
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: envConfig.cookies.cookieSecure,
+      sameSite: envConfig.cookies.cookieSameSite,
     })
     res.status(HttpStatusCode.OK).json({ accessToken })
   } catch (error) {

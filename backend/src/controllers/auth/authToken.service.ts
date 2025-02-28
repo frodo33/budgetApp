@@ -6,19 +6,19 @@ import { saveRefreshToken } from "../userRefreshTokens/userRefreshTokens.reposit
 export const generateAuthTokens = async (userId: number) => {
   const accessToken = sign(
     { userId },
-    envConfig.accessTokenSecret,
+    envConfig.jwt.accessTokenSecret,
     {
       subject: "accessApi",
-      expiresIn: envConfig.accessTokenExpiresIn,
+      expiresIn: envConfig.jwt.accessTokenExpiresIn,
     }
   )
 
   const refreshToken = sign(
     { userId },
-    envConfig.refreshTokenSecret,
+    envConfig.jwt.refreshTokenSecret,
     {
       subject: "refreshToken",
-      expiresIn: envConfig.refreshTokenExpiresIn,
+      expiresIn: envConfig.jwt.refreshTokenExpiresIn,
     }
   )
 
