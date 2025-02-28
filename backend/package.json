@@ -8,7 +8,11 @@
     "build": "tsc",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
     "lint:watch": "nodemon --watch src --ext ts,tsx --exec 'eslint --fix'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix"
+    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate src/migrations/init -d src/config/datasource.ts",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/config/datasource.ts",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/config/datasource.ts",
+    "migration:run2": "typeorm-ts-node-commonjs migration:run -d dist/config/datasource.js"
   },
   "keywords": [],
   "author": "",

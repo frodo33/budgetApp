@@ -2,24 +2,19 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-import "dotenv/config";
-
 import { db } from "./config/datasource";
 import { router } from "./router";
+import { envConfig } from "./config/env";
 
 db
   .initialize()
-  .then(() => {
-    console.log("Data Source has been initialized!")
-  })
-  .catch((err) => {
-    console.error("Error during Data Source initialization:", err)
-  })
+  .then(() => console.log("Data Source has been initialized!"))
+  .catch((err) => console.error("Error during Data Source initialization:", err))
 
 const app = express();
 
 app.use(cors({
-  origin: "https://localhost:3000", // TODO: set as env
+  origin: envConfig.clientUrl,
   credentials: true,
 }));
 

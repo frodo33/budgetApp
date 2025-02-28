@@ -1,8 +1,8 @@
 import app from "./app";
+import "dotenv/config";
+import { envConfig } from "./config/env";
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
+app.listen(envConfig.port, () => {
   // eslint-disable-next-line no-console
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${envConfig.port}`);
 });

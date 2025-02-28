@@ -10,7 +10,7 @@ export const handleRefreshToken = async (refreshToken: string) => {
     throw createUnauthorizedError("Refresh token invalid or expired")
   }
 
-  const decodedRefreshToken = verify(refreshToken, envConfig.refreshTokenSecret) as JwtPayload
+  const decodedRefreshToken = verify(refreshToken, envConfig.jwt.refreshTokenSecret) as JwtPayload
   const userRefreshToken = await findRefreshToken(refreshToken, decodedRefreshToken.userId)
 
   if (!userRefreshToken) {
