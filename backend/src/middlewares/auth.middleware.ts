@@ -6,7 +6,7 @@ import { findInvalidToken } from "../controllers/userInvalidTokens/userInvalidTo
 import { createServerError, createUnauthorizedError } from "../utils/errorHandler"
 import { HttpStatusCode } from "../enums/httpStatus"
 
-export const ensureAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
+export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const accessToken = req.headers.authorization
 

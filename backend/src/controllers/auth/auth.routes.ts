@@ -1,6 +1,6 @@
 import express from "express";
 
-import { ensureAuthenticated } from "../../middlewares/ensureAuthenticated";
+import { authMiddleware } from "../../middlewares/auth.middleware";
 
 import { register } from "./register/register.controller";
 import { login } from "./login/login.controller";
@@ -12,6 +12,6 @@ export const authRoutes = express.Router()
 authRoutes.post("/register", register)
 authRoutes.post("/login", login)
 authRoutes.post("/refresh-token", refreshToken)
-authRoutes.post("/logout", ensureAuthenticated, logout)
+authRoutes.post("/logout", authMiddleware, logout)
 
 export default authRoutes
