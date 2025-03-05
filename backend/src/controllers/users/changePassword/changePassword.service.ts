@@ -2,7 +2,7 @@ import { validate } from "class-validator";
 import bcrypt from "bcryptjs"
 
 import { createUnauthorizedError, createValidationError } from "../../../utils/errorHandler";
-import { findUserById, updateUserPassword } from "../users.repository";
+import { findUser, updateUser } from "../users.repository";
 import { formatValidationErrors } from "../../../utils/errorHandler.utils";
 import { cleanOldRefreshTokens } from "../../userRefreshTokens/userRefreshTokens.repository";
 import { hashPassword } from "../../auth/auth.utils";
@@ -19,7 +19,7 @@ export const changeUserPassword = async (data: ChangePasswordDto, userId?: numbe
     throw createValidationError("There are validation errors", validationErrors)
   }
 
-  const user = await findUserById(userId)
+  const user = await findUser({ id: userId })
   if (!user) throw createUnauthorizedError("User not found")
 
   const passwordMatch = await bcrypt.compare(password, user.password)
@@ -28,5 +28,5 @@ export const changeUserPassword = async (data: ChangePasswordDto, userId?: numbe
   await cleanOldRefreshTokens(userId)
   const hashedPassword = await hashPassword(newPassword)
 
-  await updateUserPassword(userId, hashedPassword)
+  await updateUser(userId, { password: hashedPassword })
 }

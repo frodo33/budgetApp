@@ -3,7 +3,7 @@ import crypto from "crypto"
 import { validate } from "class-validator";
 
 import { createUnauthorizedError, createValidationError } from "../../../../utils/errorHandler";
-import { findUserByEmail, updateUser } from "../../../users/users.repository";
+import { findUser, updateUser } from "../../../users/users.repository";
 import { formatValidationErrors } from "../../../../utils/errorHandler.utils";
 import { sendEmail } from "../../../../utils/email.service";
 import { envConfig } from "../../../../config/env";
@@ -20,7 +20,7 @@ export const sendResetPasswordEmail = async (payload: ForgotPasswordDto) => {
     throw createValidationError("There are validation errors", validationErrors)
   }
 
-  const user = await findUserByEmail(email)
+  const user = await findUser({ email })
   if (!user) throw createUnauthorizedError("Email or password is invalid.")
 
   const resetPasswordToken = crypto.randomBytes(32).toString("hex")
