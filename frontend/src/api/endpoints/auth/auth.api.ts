@@ -1,8 +1,8 @@
 import { apiService } from "@/api/api.service";
 import { clearSession, setAccessToken, setUserData } from "@/store/auth/auth.slice";
 
-import { loginConfig, logoutConfig, refreshTokenConfig, registerConfig } from "./auth.config";
-import type { LoginPostModel, LoginResponseModel } from "./auth.types";
+import { forgotPasswordConfig, loginConfig, logoutConfig, refreshTokenConfig, registerConfig, resetPasswordConfig } from "./auth.config";
+import type { ForgotPasswordPostModel, ForgotPasswordResponseModel, LoginPostModel, LoginResponseModel, ResetPasswordPostModel, ResetPasswordResponseModel } from "./auth.types";
 import { UsersApi } from "../users/users.api";
 import type { UserPostModel, UserResponseModel } from "../users/users.types";
 
@@ -57,6 +57,25 @@ export const AuthApi = apiService
           dispatch(clearSession())
         },
       }),
+
+      forgotPassword: build.mutation<ForgotPasswordResponseModel, ForgotPasswordPostModel>({
+        query: ({ email }) => ({
+          ...forgotPasswordConfig,
+          body: {
+            email
+          }
+        }),
+      }),
+
+      resetPassword: build.mutation<ResetPasswordResponseModel, ResetPasswordPostModel>({
+        query: ({ token, newPassword }) => ({
+          ...resetPasswordConfig,
+          body: {
+            token,
+            newPassword
+          }
+        }),
+      }),
     }),
   });
 
@@ -65,4 +84,6 @@ export const {
   useLoginMutation,
   useRefreshTokenMutation,
   useLogoutMutation,
+  useForgotPasswordMutation,
+  useResetPasswordMutation,
 } = AuthApi
