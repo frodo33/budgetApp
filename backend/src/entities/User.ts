@@ -19,6 +19,12 @@ export class User {
   @OneToMany(() => UserRefreshToken, (token) => token.user)
   refreshTokens: UserRefreshToken[];
 
+  @Column({ nullable: true })
+  resetPasswordToken?: string | null
+
+  @Column({ type: "timestamp", nullable: true })
+  resetPasswordTokenExpires?: Date | null
+
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public createdAt: Date
 

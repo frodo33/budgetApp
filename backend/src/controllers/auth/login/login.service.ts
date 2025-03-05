@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs"
 
 import { createUnauthorizedError, createValidationError } from "../../../utils/errorHandler";
 import { generateAuthTokens } from "../authToken.service";
-import { findUserByEmail } from "../../users/users.repository";
+import { findUser } from "../../users/users.repository";
 import { formatValidationErrors } from "../../../utils/errorHandler.utils";
 import { cleanOldRefreshTokens } from "../../userRefreshTokens/userRefreshTokens.repository";
 
@@ -19,7 +19,7 @@ export const loginUser = async (credentials: LoginDto) => {
     throw createValidationError("There are validation errors", validationErrors)
   }
 
-  const user = await findUserByEmail(email)
+  const user = await findUser({ email })
   if (!user) throw createUnauthorizedError("Email or password is invalid.")
 
   const passwordMatch = await bcrypt.compare(password, user.password)

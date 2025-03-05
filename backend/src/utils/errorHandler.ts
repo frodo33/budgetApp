@@ -13,6 +13,9 @@ export const createError = (status: HttpStatusCode, { title, detail, errors }: E
   errors,
 });
 
+export const createBadRequestError = (detail: string) =>
+  createError(HttpStatusCode.BAD_REQUEST, { title: "Bad request", detail });
+
 export const createUnauthorizedError = (detail: string) =>
   createError(HttpStatusCode.UNAUTHORIZED, { title: "Unauthorized", detail });
 
