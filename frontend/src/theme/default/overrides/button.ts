@@ -75,7 +75,7 @@ export const MuiButton: ComponentOverride["MuiButton"] = {
     {
       props: { variant: "text" },
       style: ({ theme }) => ({
-        display: "inline-block",
+        display: "inline-flex",
         minWidth: "unset",
         padding: 0,
         color: theme.palette.primary.main,

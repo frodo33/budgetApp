@@ -18,7 +18,7 @@ export const LoginPage: FC = () => {
 
   return (
     <PublicPageWrapper>
-      <Paper sx={{ minWidth: isMdUp ? 450 : "100%" }}>
+      <Paper sx={{ width: isMdUp ? 450 : "100%" }}>
         <Typography
           component="h1"
           variant={isSmUp ? "h1" : "h2"}

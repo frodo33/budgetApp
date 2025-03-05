@@ -22,3 +22,13 @@ export const logoutConfig: RequestConfig = {
   url: "/auth/logout",
   credentials: "include",
 }
+
+export const forgotPasswordConfig: RequestConfig = {
+  method: "POST",
+  url: "/auth/password/forgot",
+}
+
+export const resetPasswordConfig: RequestConfig = {
+  method: "POST",
+  url: "/auth/password/reset",
+}

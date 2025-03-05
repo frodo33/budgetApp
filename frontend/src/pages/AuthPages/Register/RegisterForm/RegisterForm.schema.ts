@@ -3,9 +3,9 @@ import * as yup from "yup"
 
 import type { RegisterFormState } from "./RegisterForm.types"
 
-const USERNAME_MIN_LENGTH = 3
-const USERNAME_MAX_LENGTH = 20
-const PASSWORD_MIN_LENGTH = 8
+export const USERNAME_MIN_LENGTH = 3
+export const USERNAME_MAX_LENGTH = 20
+export const PASSWORD_MIN_LENGTH = 8
 
 export const RegisterFormSchema = (t: TFunction): yup.ObjectSchema<RegisterFormState> => (
   yup.object().shape({

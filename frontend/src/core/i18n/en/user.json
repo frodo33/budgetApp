@@ -1,10 +1,17 @@
 {
   "signIn": "Sign in",
   "signUp": "Sign up",
+  "resend": "Resend",
+  "linkNotReceived": "Didn't receive the link?",
+  "setPassword": "Set password",
   "createAccount": "Create a new account",
   "createAccountDetails": "Enter your details to sign up",
   "loginTitle": "Sign in to your account",
   "loginDetails": "Enter your credentials to access your account",
+  "forgotPasswordTitle": "Reset your password",
+  "forgotPasswordDetails": "We'll send you a reset link.",
+  "resetPasswordTitle": "Set a new password",
+  "resetPasswordDetails": "Choose a strong new password.",
   "alreadyHaveAccount": "Already have an account?",
   "dontHaveAccount": "Don't have an account?"
 }

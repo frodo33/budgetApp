@@ -1,6 +1,7 @@
 import { Navigate } from "react-router";
 
 import { PublicLayout } from "@/components/layouts/PublicLayout/PublicLayout";
+import { ForgotPasswordPage } from "@/pages/AuthPages/ForgotPassword/ForgotPassword.page";
 import { LoginPage } from "@/pages/AuthPages/Login/Login.page";
 import { RegisterPage } from "@/pages/AuthPages/Register/Register.page";
 
@@ -16,6 +17,7 @@ export const publicRoutes = {
       children: [
         { path: getPath(RoutePath.LOGIN), element: <LoginPage /> },
         { path: getPath(RoutePath.REGISTER), element: <RegisterPage /> },
+        { path: getPath(RoutePath.FORGOT_PASSWORD), element: <ForgotPasswordPage /> },
         { path: "*", element: <Navigate to={getPath(RoutePath.LOGIN, true)} replace /> },
       ]
     },
