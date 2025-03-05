@@ -14,6 +14,13 @@ export const envConfig = {
       ? Number(process.env.REFRESH_TOKEN_EXPIRES_IN)
       : 24 * 60 * 60,
   },
+  smtp: {
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
+    user: process.env.SMTP_USER,
+    password: process.env.SMTP_PASSWORD,
+    from: process.env.SMTP_FROM,
+  },
   database: {
     url: process.env.DB_URL || "",
   },
