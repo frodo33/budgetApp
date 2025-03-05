@@ -5,7 +5,7 @@ import { HttpStatusCode } from "../../../../enums/httpStatus";
 import { ForgotPasswordDto } from "./forgotPassword.dto";
 import { sendResetPasswordEmail } from "./forgotPassword.service";
 
-export const forgotPassword = async (req: Request, res: Response) => {
+export const forgotPasswordController = async (req: Request, res: Response) => {
   try {
     const forgotPasswordDto = Object.assign(new ForgotPasswordDto(), req.body)
     await sendResetPasswordEmail(forgotPasswordDto)

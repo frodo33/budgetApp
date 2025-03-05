@@ -1,15 +1,14 @@
 import { validate } from "class-validator";
 import bcrypt from "bcryptjs"
 
-import { createUnauthorizedError, createValidationError } from "../../../utils/errorHandler";
-import { findUser, updateUser } from "../users.repository";
-import { formatValidationErrors } from "../../../utils/errorHandler.utils";
-import { cleanOldRefreshTokens } from "../../userRefreshTokens/userRefreshTokens.repository";
-import { hashPassword } from "../../auth/auth.utils";
+import { createUnauthorizedError, createValidationError } from "../../../../utils/errorHandler";
+import { findUser, updateUser } from "../../../users/users.repository";
+import { formatValidationErrors } from "../../../../utils/errorHandler.utils";
+import { hashPassword } from "../../auth.utils";
 
 import { ChangePasswordDto } from "./changePassword.dto";
 
-export const changeUserPassword = async (data: ChangePasswordDto, userId?: number) => {
+export const changePassword = async (data: ChangePasswordDto, userId?: number) => {
   const { password, newPassword } = data
   const errors = await validate(data)
 
@@ -25,7 +24,6 @@ export const changeUserPassword = async (data: ChangePasswordDto, userId?: numbe
   const passwordMatch = await bcrypt.compare(password, user.password)
   if (!passwordMatch) throw createUnauthorizedError("Password is invalid.")
 
-  await cleanOldRefreshTokens(userId)
   const hashedPassword = await hashPassword(newPassword)
 
   await updateUser(userId, { password: hashedPassword })

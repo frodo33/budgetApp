@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 
-import { HttpStatusCode } from "../../../enums/httpStatus";
+import { HttpStatusCode } from "../../../../enums/httpStatus";
 
 import { ChangePasswordDto } from "./changePassword.dto";
-import { changeUserPassword } from "./changePassword.service";
+import { changePassword } from "./changePassword.service";
 
-export const changePassword = async (req: Request, res: Response) => {
+export const changePasswordController = async (req: Request, res: Response) => {
   try {
     const userDto = Object.assign(new ChangePasswordDto(), req.body)
-    await changeUserPassword(userDto, req.user.id)
+    await changePassword(userDto, req.user.id)
 
     res.status(HttpStatusCode.NO_CONTENT).end()
   } catch (error) {
